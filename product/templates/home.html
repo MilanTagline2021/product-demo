@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+</head>
+<body>
+    
+<div class="alert alert-success" role="alert">
+    <h3>Welcome!</h3>
+    <a href="{% url 'add_product_a' %}">Add Product</a>
+    
+</div>
+    
+    <div class="alert alert-success" role="alert">
+        <br><br>
+        <table id="datatable" border="2">
+            <thead>
+                <tr>
+                    <th>original_name</th>
+                    <th>Concate Name</th>
+                </tr>
+            </thead>
+            {% for product in  page_obj %}
+                <tr>
+                    <td>{{ product.original_name }}</td>
+                    <td>{{ product.product_b}}</td>
+                </tr>
+            {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>          
+        </table>
+    </div>
+</body>
+</html>
